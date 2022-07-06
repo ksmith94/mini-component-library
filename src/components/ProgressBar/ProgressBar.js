@@ -21,11 +21,15 @@ const SIZES = {
   }
 }
 
+const VALUES = {
+
+}
+
 const ProgressBar = ({ value, size }) => {
   const styles = SIZES[size];
   return (
     <Wrapper style={styles}>
-      <Progress value={value}></Progress>
+      <Progress style={{'--width': value + '%'}}>{value}</Progress>
     </Wrapper>
   );
 };
@@ -38,10 +42,12 @@ const Wrapper = styled.div`
   padding: var(--padding);
 `
 
-const Progress = styled.span`
-  background-color: blue;
-  width: 50px;
-  height: 10px;
+const Progress = styled(Wrapper)`
+  background-color: ${COLORS.primary};
+  width: var(--width);
+  height: 100%;
+  border-radius: 8px 0px 0px 8px;
+  border-radius: ${p => p.value > 98 && 'border-radius: 8px;'};
 `
 
 
