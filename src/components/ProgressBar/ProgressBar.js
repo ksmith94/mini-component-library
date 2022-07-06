@@ -7,56 +7,66 @@ import VisuallyHidden from '../VisuallyHidden';
 
 const SIZES = {
   small: {
-    '--height': 8 + 'px',
-    '--borderRadius': 4 + 'px',
+    height: 8 + 'px',
+    borderRadius: 4 + 'px',
+    padding: 0
   },
   medium: {
-    '--height': 12 + 'px',
-    '--borderRadius': 4 + 'px',
+    height: 12 + 'px',
+    borderRadius: 4 + 'px',
+    padding: 0
   },
   large: {
-    '--height': 24 + 'px',
-    '--borderRadius': 8 + 'px',
-    '--padding': 4 + 'px'
+    height: 24 + 'px',
+    borderRadius: 8 + 'px',
+    padding: 4 + 'px'
   }
-}
-
-const VALUES = {
-
 }
 
 const ProgressBar = ({ value, size }) => {
   const styles = SIZES[size];
   return (
-    <Wrapper style={styles}>
-      <Progress style={{'--width': value + '%'}} value={value}>
-        <VisuallyHidden>
-        {value}
-        </VisuallyHidden>
+    <Wrapper 
+      role="progressbar"
+      aria-valuenow={value}
+      style={{
+        '--height': styles.height,
+        '--borderRadius': styles.borderRadius,
+        '--padding': styles.padding,
+      }}> 
+      <ProgressWrapper style={{'--borderRadius': styles.borderRadius}}>
+        <Progress 
+          style={{
+              '--width': value + '%',
+              '--borderRadius': styles.borderRadius
+            }}
+            value={value}>
+          <VisuallyHidden>{value}</VisuallyHidden>
         </Progress>
+      </ProgressWrapper>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  width: 370px;
+  width: 100%;
   height: var(--height);
   background-color: ${COLORS.transparentGray15};
   border-radius: var(--borderRadius);
   padding: var(--padding);
+  `
+  
+  const ProgressWrapper = styled.div`
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--borderRadius);
 `
 
-const Progress = styled(Wrapper)`
+const Progress = styled.div`
   background-color: ${COLORS.primary};
   width: var(--width);
   height: 100%;
-  border-radius: ${p => {
-    if(p.value > 98) {
-      return ('8px')
-    } else {
-      return ('8px 0px 0px 8px')
-    }
-  }}
 `
 
 

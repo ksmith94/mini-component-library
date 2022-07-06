@@ -9,10 +9,26 @@ const Select = ({ label, value, onChange, children }) => {
   const displayedValue = getDisplayedValue(value, children);
 
   return (
-    <select value={value} onChange={onChange}>
+    <Wrapper value={value} onChange={onChange}>
       {children}
-    </select>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.select`
+  background-color: ${COLORS.transparentGray15};
+  font-family: 'Roboto' 'sans-serif';
+  font-size: 1rem;
+  color: ${COLORS.gray700};
+  width: min-content;
+
+  &:focus {
+    outline: default;
+  }
+
+  &:hover {
+    color: ${COLORS.black};
+  }
+`
 
 export default Select;
