@@ -29,7 +29,11 @@ const ProgressBar = ({ value, size }) => {
   const styles = SIZES[size];
   return (
     <Wrapper style={styles}>
-      <Progress style={{'--width': value + '%'}} value={value}>{value}</Progress>
+      <Progress style={{'--width': value + '%'}} value={value}>
+        <VisuallyHidden>
+        {value}
+        </VisuallyHidden>
+        </Progress>
     </Wrapper>
   );
 };
