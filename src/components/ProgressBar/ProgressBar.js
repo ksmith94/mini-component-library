@@ -30,18 +30,17 @@ const ProgressBar = ({ value, size }) => {
       role="progressbar"
       aria-valuenow={value}
       style={{
-        '--height': styles.height,
         '--borderRadius': styles.borderRadius,
         '--padding': styles.padding,
       }}> 
+      <VisuallyHidden>{value}</VisuallyHidden>
       <ProgressWrapper style={{'--borderRadius': styles.borderRadius}}>
         <Progress 
           style={{
               '--width': value + '%',
-              '--borderRadius': styles.borderRadius
+              '--height': styles.height,
             }}
             value={value}>
-          <VisuallyHidden>{value}</VisuallyHidden>
         </Progress>
       </ProgressWrapper>
     </Wrapper>
@@ -49,24 +48,22 @@ const ProgressBar = ({ value, size }) => {
 };
 
 const Wrapper = styled.div`
-  width: 100%;
-  height: var(--height);
   background-color: ${COLORS.transparentGray15};
   border-radius: var(--borderRadius);
   padding: var(--padding);
-  `
+  box-shadow: inset 0px 2px 4px ${COLORS.transparentGray15};
+`
   
   const ProgressWrapper = styled.div`
   overflow: hidden;
-  width: 100%;
-  height: 100%;
   border-radius: var(--borderRadius);
 `
 
 const Progress = styled.div`
   background-color: ${COLORS.primary};
   width: var(--width);
-  height: 100%;
+  height: var(--height);
+  border-radius: 4px 0 0 4px;
 `
 
 
