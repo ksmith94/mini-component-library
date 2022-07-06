@@ -8,9 +8,11 @@ import { getDisplayedValue } from './Select.helpers';
 const Select = ({ label, value, onChange, children }) => {
   const displayedValue = getDisplayedValue(value, children);
 
-  return (
+  return ( 
     <Wrapper value={value} onChange={onChange}>
       {children}
+      <Icon id='chevron-down'>
+      </Icon>
     </Wrapper>
   );
 };
@@ -20,7 +22,10 @@ const Wrapper = styled.select`
   font-family: 'Roboto' 'sans-serif';
   font-size: 1rem;
   color: ${COLORS.gray700};
-  width: min-content;
+  width: fit-content;
+  border-radius: 8px;
+  padding: 12px 18px 12px 16px;
+  margin-top: -2px;
 
   &:focus {
     outline: default;
