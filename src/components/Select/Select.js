@@ -5,47 +5,39 @@ import { COLORS } from '../../constants';
 import Icon from '../Icon';
 import { getDisplayedValue } from './Select.helpers';
 
-const VALUES = {
-  newest: {
-    width: 'fit-content'
-  },
-  price: {
-    width: 100 + 'px',
-  },
-  curated: {
-    width: 120 + 'px'
-  }
-}
-
 const Select = ({ label, value, onChange, children }) => {
   const displayedValue = getDisplayedValue(value, children);
-  const styles = VALUES[value];
 
   return ( 
-    <Wrapper value={value} onChange={onChange} style={{'--width': styles.width}}>
-      {children}
-      <Icon id='chevron-down'>
-      </Icon>
+    <Wrapper>
+      <NativeSelect value={value} onChange={onChange}>
+        {children}
+      </NativeSelect>
+      <SelectDisplay>
+        Hello World
+      </SelectDisplay>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.select`
+const Wrapper = styled.div`
+  position: relative;
+  width: max-content;
+`
+
+const NativeSelect = styled.select`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+`
+
+const SelectDisplay = styled.div`
   background-color: ${COLORS.transparentGray15};
-  font-family: 'Roboto' 'sans-serif';
-  font-size: 1rem;
-  color: ${COLORS.gray700};
-  width: var(--width);
+  padding: 12px 52px 12px 16px;
   border-radius: 8px;
-  padding: 12px 18px 12px 16px;
-
-  &:focus {
-    outline: default;
-  }
-
-  &:hover {
-    color: ${COLORS.black};
-  }
 `
 
 export default Select;
