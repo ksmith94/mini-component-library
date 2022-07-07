@@ -38,6 +38,7 @@ const IconInput = ({
 
   return (
   <Wrapper>
+    <VisuallyHidden>{label}</VisuallyHidden>
     <SearchBar
     placeholder={placeholder}
     style={{
