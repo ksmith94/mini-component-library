@@ -35,7 +35,7 @@ const NativeSelect = styled.select`
   width: 100%;
   height: 100%;
   opacity: 0;
-  z-index: 2;
+  -webkit-appearance: none;
 `
 
 const SelectDisplay = styled.div`
@@ -43,9 +43,10 @@ const SelectDisplay = styled.div`
   padding: 12px 52px 12px 16px;
   border-radius: 8px;
   color: ${COLORS.gray700};
+  font-size: 1rem;
 
   ${NativeSelect}:focus + & {
-    outline: 2px dotted black;
+    outline: 1px dotted #212121;
     outline: 5px auto -webkit-focus-ring-color;
   }
 
@@ -62,7 +63,7 @@ const IconWrapper = styled.div`
   margin: auto;
   height: var(--size);
   width: var(--size);
-  z-index: 1;
+  pointer-events: none;
 `
 
 export default Select;
