@@ -14,7 +14,7 @@ const Select = ({ label, value, onChange, children }) => {
         {children}
       </NativeSelect>
       <SelectDisplay>
-        Hello World
+        {displayedValue}
       </SelectDisplay>
       <IconWrapper style={{'--size': 24 + 'px'}}>
         <Icon id='chevron-down' size={24} strokeWidth={1} />
@@ -35,13 +35,23 @@ const NativeSelect = styled.select`
   width: 100%;
   height: 100%;
   opacity: 0;
+  z-index: 2;
 `
 
 const SelectDisplay = styled.div`
   background-color: ${COLORS.transparentGray15};
   padding: 12px 52px 12px 16px;
   border-radius: 8px;
-  color: ${COLORS.gray700}
+  color: ${COLORS.gray700};
+
+  ${NativeSelect}:focus + & {
+    outline: 2px dotted black;
+    outline: 5px auto -webkit-focus-ring-color;
+  }
+
+  ${NativeSelect}:hover + & {
+    color: ${COLORS.black};
+  }
 `
 
 const IconWrapper = styled.div`
@@ -52,6 +62,7 @@ const IconWrapper = styled.div`
   margin: auto;
   height: var(--size);
   width: var(--size);
+  z-index: 1;
 `
 
 export default Select;
