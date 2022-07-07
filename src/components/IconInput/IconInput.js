@@ -11,13 +11,19 @@ const SIZE = {
     width: 150 + 'px',
     borderBottom: 1 + 'px solid black',
     fontSize: 14 + 'px',
-    iconSize: 16 + 'px'
+    iconSize: 16 + 'px',
+    iconBottom: 2 + 'px',
+    paddingLeft: 24 + 'px',
+    iconWeight: 1 + 'px'
   },
   large: {
     width: 300 + 'px',
     borderBottom: 2 + 'px solid black',
     fontSize: 18 + 'px',
-    iconSize: 24 + 'px'
+    iconSize: 24 + 'px',
+    iconBottom: 4 + 'px',
+    paddingLeft: 41 + 'px',
+    iconWeight: 2 + 'px'
   }
 }
 
@@ -37,12 +43,18 @@ const IconInput = ({
     style={{
       '--width': styles.width,
       '--borderBottom': styles.borderBottom,
-      '--fontSize': styles.fontSize
+      '--fontSize': styles.fontSize,
+      '--paddingLeft': styles.paddingLeft
     }}
     >
     </SearchBar>
-    <IconWrapper style={{'--size': 16 + 'px'}}>
-      <Icon id={icon} size={16} strokeWidth={1} />
+    <IconWrapper
+    style={{
+      '--size': styles.iconSize,
+      '--bottom': styles.iconBottom,
+      '--fontWeight': styles.iconWeight
+      }}>
+      <Icon id={icon} size={styles.iconSize} strokeWidth={styles.iconWeight} />
     </IconWrapper>
   </Wrapper>
   )
@@ -54,7 +66,7 @@ const Wrapper = styled.div`
 const SearchBar = styled.input`
   border: none;
   border-bottom: var(--borderBottom);
-  padding-left: 24px;
+  padding-left: var(--paddingLeft);
   width: var(--width);
   font-size: var(--fontSize);
   font-weight: 700;
@@ -79,13 +91,14 @@ const SearchBar = styled.input`
 const IconWrapper = styled.div`
   position: absolute;
   top: 0;
-  bottom: 4px;
+  bottom: var(--bottom);
   left: 0;
   margin: auto;
   width: var(--size);
   height: var(--size);
   pointer-events: none;
   color: ${COLORS.gray700};
+  font-weight: var(--fontWeight);
 
   ${SearchBar}:hover + & {
     color: ${COLORS.black};
