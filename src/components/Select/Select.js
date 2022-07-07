@@ -16,6 +16,9 @@ const Select = ({ label, value, onChange, children }) => {
       <SelectDisplay>
         Hello World
       </SelectDisplay>
+      <IconWrapper style={{'--size': 24 + 'px'}}>
+        <Icon id='chevron-down' size={24} strokeWidth={1} />
+      </IconWrapper>
     </Wrapper>
   );
 };
@@ -38,6 +41,17 @@ const SelectDisplay = styled.div`
   background-color: ${COLORS.transparentGray15};
   padding: 12px 52px 12px 16px;
   border-radius: 8px;
+  color: ${COLORS.gray700}
+`
+
+const IconWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 10px;
+  margin: auto;
+  height: var(--size);
+  width: var(--size);
 `
 
 export default Select;
