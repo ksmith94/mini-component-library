@@ -59,10 +59,20 @@ const SearchBar = styled.input`
   font-size: var(--fontSize);
   font-weight: 700;
   color: ${COLORS.gray700};
+  margin: 2px;
   
   &::placeholder {
     color: ${COLORS.gray500};
     font-weight: 400;
+  }
+
+  &:focus {
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: 2px;
+  }
+
+  &:hover {
+    color: ${COLORS.black};
   }
 `
 
@@ -74,6 +84,12 @@ const IconWrapper = styled.div`
   margin: auto;
   width: var(--size);
   height: var(--size);
+  pointer-events: none;
+  color: ${COLORS.gray700};
+
+  ${SearchBar}:hover + & {
+    color: ${COLORS.black};
+  }
 `
 
 export default IconInput;
