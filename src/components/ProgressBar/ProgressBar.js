@@ -12,14 +12,14 @@ const SIZES = {
     padding: 0
   },
   medium: {
-    height: 12 + 'px',
-    borderRadius: 4 + 'px',
+    height: 12,
+    borderRadius: 4,
     padding: 0
   },
   large: {
-    height: 24 + 'px',
-    borderRadius: 8 + 'px',
-    padding: 4 + 'px'
+    height: 24,
+    borderRadius: 8,
+    padding: 4
   }
 }
 
@@ -33,17 +33,17 @@ const ProgressBar = ({ value, size }) => {
       role="progressbar"
       aria-valuenow={value}
       style={{
-        '--borderRadius': styles.borderRadius,
-        '--padding': styles.padding,
+        '--borderRadius': styles.borderRadius + 'px',
+        '--padding': styles.padding + 'px',
       }}> 
       <VisuallyHidden>{value}%</VisuallyHidden>
-      <BarWrapper style={{'--borderRadius': styles.borderRadius}}>
+      <BarWrapper>
         <Bar 
           style={{
               '--width': value + '%',
-              '--height': styles.height,
+              '--height': styles.height + 'px',
             }}
-            value={value}>
+        >
         </Bar>
       </BarWrapper>
     </Wrapper>
@@ -59,7 +59,7 @@ const Wrapper = styled.div`
   
 const BarWrapper = styled.div`
   overflow: hidden;
-  border-radius: var(--borderRadius);
+  border-radius: 4px;
 `
 
 const Bar = styled.div`

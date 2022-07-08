@@ -8,20 +8,20 @@ import VisuallyHidden from '../VisuallyHidden';
 
 const STYLES = {
   small: {
-    borderBottom: 1 + 'px solid black',
-    fontSize: (14 / 16) + 'rem',
-    iconSize: 16 + 'px',
-    iconBottom: 2 + 'px',
-    paddingLeft: 24 + 'px',
-    height: 24 + 'px'
+    borderBottom: 1,
+    fontSize: (14 / 16),
+    iconSize: 16,
+    iconBottom: 2,
+    paddingLeft: 24,
+    height: 24
   },
   large: {
-    borderBottom: 2 + 'px solid black',
-    fontSize: (18 / 16) + 'rem',
-    iconSize: 24 + 'px',
-    iconBottom: 4 + 'px',
-    paddingLeft: 36 + 'px',
-    height: 24 + 'px'
+    borderBottom: 2,
+    fontSize: (18 / 16),
+    iconSize: 24,
+    iconBottom: 4,
+    paddingLeft: 36,
+    height: 24
   }
 }
 
@@ -44,16 +44,16 @@ const IconInput = ({
       placeholder={placeholder}
       style={{
         '--width': width + 'px',
-        '--borderBottom': styles.borderBottom,
-        '--fontSize': styles.fontSize,
-        '--paddingLeft': styles.paddingLeft,
+        '--borderBottom': styles.borderBottom + 'px',
+        '--fontSize': styles.fontSize + 'rem',
+        '--paddingLeft': styles.paddingLeft + 'px',
       }}
     >
     </SearchBar>
     <IconWrapper
       style={{
-        '--size': styles.iconSize,
-        '--bottom': styles.iconBottom,
+        '--size': styles.iconSize + 'px',
+        '--bottom': styles.iconBottom + 'px',
         }}>
         <Icon id={icon} size={styles.iconSize} />
     </IconWrapper>
@@ -67,7 +67,7 @@ const Wrapper = styled.div`
 `
 const SearchBar = styled.input`
   border: none;
-  border-bottom: var(--borderBottom);
+  border-bottom: var(--borderBottom) solid ${COLORS.black};
   padding-left: var(--paddingLeft);
   width: var(--width);
   height: var(--height);
