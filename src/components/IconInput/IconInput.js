@@ -6,22 +6,22 @@ import { COLORS } from '../../constants';
 import Icon from '../Icon';
 import VisuallyHidden from '../VisuallyHidden';
 
-const SIZE = {
+const STYLES = {
   small: {
-    width: 150 + 'px',
     borderBottom: 1 + 'px solid black',
     fontSize: (14 / 16) + 'rem',
     iconSize: 16 + 'px',
     iconBottom: 2 + 'px',
     paddingLeft: 24 + 'px',
+    height: 24 + 'px'
   },
   large: {
-    width: 300 + 'px',
     borderBottom: 2 + 'px solid black',
     fontSize: (18 / 16) + 'rem',
     iconSize: 24 + 'px',
     iconBottom: 4 + 'px',
     paddingLeft: 36 + 'px',
+    height: 24 + 'px'
   }
 }
 
@@ -32,27 +32,30 @@ const IconInput = ({
   size,
   placeholder,
 }) => {
-  const styles = SIZE[size];
+  const styles = STYLES[size];
+  if(!styles) {
+    throw new Error(`Unknown size passed to IconInput: ${size}`)
+  }
 
   return (
   <Wrapper>
     <VisuallyHidden>{label}</VisuallyHidden>
     <SearchBar
-    placeholder={placeholder}
-    style={{
-      '--width': width + 'px',
-      '--borderBottom': styles.borderBottom,
-      '--fontSize': styles.fontSize,
-      '--paddingLeft': styles.paddingLeft,
-    }}
+      placeholder={placeholder}
+      style={{
+        '--width': width + 'px',
+        '--borderBottom': styles.borderBottom,
+        '--fontSize': styles.fontSize,
+        '--paddingLeft': styles.paddingLeft,
+      }}
     >
     </SearchBar>
     <IconWrapper
-    style={{
-      '--size': styles.iconSize,
-      '--bottom': styles.iconBottom,
-      }}>
-      <Icon id={icon} size={styles.iconSize} />
+      style={{
+        '--size': styles.iconSize,
+        '--bottom': styles.iconBottom,
+        }}>
+        <Icon id={icon} size={styles.iconSize} />
     </IconWrapper>
   </Wrapper>
   )
@@ -67,7 +70,7 @@ const SearchBar = styled.input`
   border-bottom: var(--borderBottom);
   padding-left: var(--paddingLeft);
   width: var(--width);
-  height: var(--paddingLeft);
+  height: var(--height);
   font-size: var(--fontSize);
   font-weight: 700;
   color: inherit;

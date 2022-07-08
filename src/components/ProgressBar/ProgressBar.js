@@ -25,6 +25,9 @@ const SIZES = {
 
 const ProgressBar = ({ value, size }) => {
   const styles = SIZES[size];
+  if (!styles) {
+    throw new Error(`Uknown size passed to progress bar: ${size}`)
+  }
   return (
     <Wrapper 
       role="progressbar"
@@ -33,16 +36,16 @@ const ProgressBar = ({ value, size }) => {
         '--borderRadius': styles.borderRadius,
         '--padding': styles.padding,
       }}> 
-      <VisuallyHidden>{value}</VisuallyHidden>
-      <ProgressWrapper style={{'--borderRadius': styles.borderRadius}}>
-        <Progress 
+      <VisuallyHidden>{value}%</VisuallyHidden>
+      <BarWrapper style={{'--borderRadius': styles.borderRadius}}>
+        <Bar 
           style={{
               '--width': value + '%',
               '--height': styles.height,
             }}
             value={value}>
-        </Progress>
-      </ProgressWrapper>
+        </Bar>
+      </BarWrapper>
     </Wrapper>
   );
 };
@@ -54,12 +57,12 @@ const Wrapper = styled.div`
   box-shadow: inset 0px 2px 4px ${COLORS.transparentGray15};
 `
   
-  const ProgressWrapper = styled.div`
+const BarWrapper = styled.div`
   overflow: hidden;
   border-radius: var(--borderRadius);
 `
 
-const Progress = styled.div`
+const Bar = styled.div`
   background-color: ${COLORS.primary};
   width: var(--width);
   height: var(--height);
